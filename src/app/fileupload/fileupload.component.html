@@ -1,0 +1,16 @@
+
+
+<div class="card m-3">
+  <h5 class="card-header">File Upload</h5>
+  <div class="card-body">
+
+<div class="form-group">
+ <input type="file" #file multiple>
+ <div *ngIf="show" class="text-danger" >Please Upload Any One File</div>
+ <button  class="btn btn-primary mr-1" (click)="upload()">SEND</button><br><br><br>
+</div>
+
+ <button ><a [download]="myFileName" [href]="fileUrl">Download</a></button>
+
+  </div>
+</div>

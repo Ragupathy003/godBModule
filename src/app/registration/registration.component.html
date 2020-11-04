@@ -1,0 +1,98 @@
+<div class="container">
+<div class="card m-3">
+    <h5 class="card-header">Registration Form</h5>
+    <div class="card-body">
+        <form name="form" (ngSubmit)="f.form.valid && onRegister()" #f="ngForm"  novalidate>
+         
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" class="form-control" [(ngModel)]="regData.firstName" #firstName="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required>
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                      <div *ngIf="firstName.errors.required">First Name is required</div>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" class="form-control" [(ngModel)]="regData.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required>
+                    <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                      <div *ngIf="lastName.errors.required">Last Name is required</div>
+                  </div>
+                </div>
+           
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" [(ngModel)]="regData.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                    <div class="text-danger" *ngIf="email.errors.required">Email is required</div>
+                    <div class="text-danger" *ngIf="email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+  
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="number" name="mobile" class="form-control" [(ngModel)]="regData.mobile" pattern ="^((\\+91-?)|0)?[0-9]{10}$"  #mobile="ngModel"   mobile="10" [ngClass]="{ 'is-invalid': f.submitted && mobile.invalid }" required mobile>
+              <div *ngIf="f.submitted && mobile.invalid" class="invalid-feedback">
+                  <div class="text-danger" *ngIf="mobile.errors.required">mobile number  is required</div>
+                  <div  class="text-danger" *ngIf="mobile.errors.pattern"> Mobile number not valid. </div>  
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea #txt="ngModel" class="form-control" #address="ngModel"  name="address" cols="35" rows="2" placeholder="type address"
+                    [(ngModel)]="regData.address" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }" required></textarea>
+                <div *ngIf="f.submitted && address.invalid" class="invalid-feedback">
+                    <div class="text-danger" *ngIf="address.errors.required">Address is required</div>
+                  
+                </div>
+              </div>
+
+          	<div class="group-gap">
+                <label>Gender</label>
+					<div class="d-block my-3">
+						<div class="custom-control custom-radio">
+							<input id="male" type="radio" class="custom-control-input"  #gender="ngModel" value="male" name="gender"  [(ngModel)]="regData.gender" required>
+              <label class="custom-control-label" for="male">Male</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input id="female" type="radio" class="custom-control-input"  #gender="ngModel" value="female" name="gender"  [(ngModel)]="regData.gender" required>
+              <label class="custom-control-label" for="female">Female</label>
+            </div>
+
+            <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                <div class="text-danger" *ngIf="gender.errors.required">please select gender</div>
+            </div>
+          </div>
+        </div>
+
+           
+            <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" [(ngModel)]="regData.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="8">
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div class="text-danger" *ngIf="password.errors.required">Password is required</div>
+                        <div class="text-danger" *ngIf="password.errors.minlength">Password must be at least 8 characters</div>
+                    </div>
+                </div>
+  
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control" pattern={{password.value}} [(ngModel)]="regData.confirmPassword" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+                    <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                        <div class="text-danger"*ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+                        <div class="text-danger"*ngIf="confirmPassword.errors.pattern">Password and Confirm Password Not Match</div>
+                       
+                    </div>
+                </div>
+           
+         
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

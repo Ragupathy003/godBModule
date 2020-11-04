@@ -1,0 +1,36 @@
+
+<!-- LOGIN BOX -->
+<div class="container">
+<div class="card m-3">
+    <h5 class="card-header">Login Form</h5>
+    <div class="card-body">
+    <form name="form" (ngSubmit)="onLogin()" #log="ngForm"  novalidate>
+    <div class="row">
+     <div class="col-sm-8">       
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text"  name="email" class="form-control" [(ngModel)]="userLog.userEmail" #emails="ngModel" [ngClass]="{ 'is-invalid': log.submitted && emails.invalid }" required email>
+        <div *ngIf="log.submitted && emails.invalid" class="invalid-feedback">
+            <div class="text-danger" *ngIf="emails.errors.required">Please Enter Emai id</div>
+            <div class="text-danger" *ngIf="emails.errors.email">Email must be a valid email address</div>
+        </div>
+     </div>
+    </div>
+    <div class="col-sm-8"> 
+     <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" [(ngModel)]="userLog.userPassword" #passwords="ngModel" [ngClass]="{ 'is-invalid': log.submitted && passwords.invalid }" required >
+        <div *ngIf="log.submitted && passwords.invalid" class="invalid-feedback">
+            <div class="text-danger" *ngIf="passwords.errors.required">Please Enter Password</div>
+        </div>
+    </div>
+  </div>
+    <div class="col-sm-8"> 
+        <button class="btn btn-primary mr-1">Login</button>
+        <button ><a routerLink="/register">Register Here</a></button>
+    </div>   
+    </div>
+    </form>
+   </div>
+  </div>
+</div>
